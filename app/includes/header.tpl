@@ -80,9 +80,9 @@
   <div class="small announcement annoucement-danger">
     <div class="ves_announcement">
       This is not the official MyEtherWallet site. This site belongs to VESvault Corp., and offers an alternate version of MEW with VES API integration. To avoid getting Phished, please bookmark this site: <a href="https://wallet.ves.world">wallet.ves.world</a>.
-      <p>To see the original MEW message click <a onclick="$('.MEW_message_container').show();">here</a></p>
+      <p>To see the original MEW message click <a ng-click="ves_original_hdr=true">here</a></p>
     </div>
-    <div class="MEW_message_container">
+    <div class="MEW_message_container" ng-show="ves_original_hdr">
       <div class="ves_divider"><hr></div>
     <div class="container">
       DON'T GET PHISHED, please! 🎣 Thank you! 🤗
@@ -108,7 +108,7 @@
 <section class="bg-gradient header-branding">
   <section class="container">
     @@if (site === 'mew' ) {
-      <a class="brand" href="/" aria-label="Go to homepage">
+      <a class="brand" href="https://www.myetherwallet.com" aria-label="Go to homepage">
         <img src="images/logo-myetherwallet.svg"   height="64px" width="245px" alt="MyEtherWallet" />
         <p class="small visible-xs">3.11.3.1</p>
       </a>
