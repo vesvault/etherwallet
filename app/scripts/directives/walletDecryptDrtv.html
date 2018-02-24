@@ -433,11 +433,11 @@
     <!-- Keystore -->
     <div ng-if="walletType=='fileupload'">
       <h4 translate="ADD_Radio_2_alt">Select your wallet file</h4>
-   <div class="ves_info_message">Due to phishing, the makers of MEW do not recommend Keystore as the means of access your wallet.  We, VESvault Corp., understand the reasoning behind this advice, but respectfully disagree. As long as you only visit this site from a saved and verified bookmark and check the URL & SSL cert with each visit, you should be safe from visiting a phishing site. <br>The URL and SSL cert. should say https://wallet.ves.world & VESvault Corp.<p>To see the original message from MEW click <a ng-click="ves_showHideWarningMsg()">here</a>.</p> </div>   <div ng-show="mewwrnVisible" class="form-group"> <h5>
+      <div class="form-group"> <h5>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="#d9534f" d="M256 0C114.844 0 0 114.844 0 256s114.844 256 256 256 256-114.844 256-256S397.156 0 256 0zm102.625 313.375c12.5 12.492 12.5 32.758 0 45.25C352.383 364.875 344.188 368 336 368s-16.383-3.125-22.625-9.375L256 301.25l-57.375 57.375C192.383 364.875 184.188 368 176 368s-16.383-3.125-22.625-9.375c-12.5-12.492-12.5-32.758 0-45.25L210.75 256l-57.375-57.375c-12.5-12.492-12.5-32.758 0-45.25 12.484-12.5 32.766-12.5 45.25 0L256 210.75l57.375-57.375c12.484-12.5 32.766-12.5 45.25 0 12.5 12.492 12.5 32.758 0 45.25L301.25 256l57.375 57.375z"/></svg>
-        This is <u>not</u> a recommended way to access your wallet.
+        This is <u>not</u> a recommended way to access your wallet <u>unless</u> you take extra precautions.
       </h5>
-           Entering your private key on a website dangerous. If our website is compromised or you accidentally visit a different website, your funds will be stolen. Please consider:
+           Entering your private key on a website is dangerous. If our website is compromised or you accidentally visit a different website, your funds will be stolen. Please consider:
             <ul>
         <li>
           <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html"
@@ -457,6 +457,7 @@
              rel="noopener noreferrer">
               Running MEW Offline &amp; Locally
           </a>
+          <span class="ves_info_message">(using VES to encrypt and store your wallet password improves these options)</span>
         </li>
         <li>
           <a href="https://myetherwallet.github.io/knowledge-base/security/securing-your-ethereum.html"
