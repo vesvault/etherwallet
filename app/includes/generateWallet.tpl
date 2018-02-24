@@ -209,7 +209,7 @@
       </a>
 
       <div class="ves_message">
-	<span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been backed up with VES.</span>
+        <span class="ves_success_msg" ng-show="ves_status=='ok'" translate="x_VES_backup_ok">Your wallet password has been backed up with VES.</span>
       </div>
 
       <div class="warn">
