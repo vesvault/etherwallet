@@ -115,7 +115,7 @@
           <p translate="ADD_Label_3">
             Your file is encrypted. Please enter the password:
           </p>
-          <input class="form-control test"
+          <input class="form-control"
                  type="password"
                  placeholder="{{'x_Password' | translate }}"
                  ng-model="filePassword"
