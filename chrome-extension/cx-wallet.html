@@ -70,7 +70,7 @@
 ]
 }
 </script>
-<script type="text/javascript" src="/libVES/libVES-0.89a.js"></script>
+<script type="text/javascript" src="https://ves.host/pub/libVES.js"></script>
 <script type="text/javascript">
 function MEW_libVES() {
     var app = "MyEtherWallet";
@@ -85,7 +85,7 @@ function MEW_libVES() {
 	    });
 	}
     };
-    return new libVES({app:app,domain:domain,apiUrl:'/api/v1/',wwwUrl:'/'});
+    return new libVES({app:app,domain:domain});
 }
 </script>
 
@@ -104,10 +104,15 @@ function MEW_libVES() {
         <img src="images/logo-myetherwalletcx.svg" height="64px" width="245px" alt="MyEtherWallet" />
         <p class="small visible-xs">3.11.3.1</p>
       </a>
+      <a class="brand" href="https://www.vesvault.com" target="_blank" aria-label="Go to homepage">&nbsp;
+        <img src="https://www.vesvault.com/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
+        <span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
+      </a>
     
     <div class="tagline">
 
     <span class="hidden-xs">3.11.3.1</span>
+    <span class="hidden-xs">-VES</span>
 
     <span class="dropdown dropdown-lang" ng-cloak>
       <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle  btn btn-white" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
