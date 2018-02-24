@@ -19,6 +19,12 @@ gasLimit:   200000,
 data:       '',
 msg:        'BTQ ICO ends February 1, 2018. btc btq is your exclusive bitcoin boutique and world\'s premier cryptocurrency lifestyle brand. https://thebtcbtq.com/btq'
 },{
+// STC Token Sale
+to:         '0x8d040556214125F3fE7d8B22cF17c364603A6035',
+gasLimit:   400000,
+data:       '',
+msg:        'STC Token Sale - https://dimensions.network'
+},{
 // MNT Token Sale
 to:         '0xA9877b1e05D035899131DBd1e403825166D09f92',
 gasLimit:   200000,
@@ -193,12 +199,13 @@ gasLimit:   200000,
 data:       '',
 msg:        'Rebellious Token'
 },{
-  // Ethereum High Token Sale
+// Ethereum High Token Sale
 to:         '0xd5E3036d5CE7eC222379D16f6ffC38C38c55BF7f',
 gasLimit:   200000,
 data:       '',
 msg:        'Ethereum High HIG is a robust and feather-light cryptocurrency designed to hedge the risk of your portfolio'
 },{
+// REAL CHAIN TOKEN!
 to:         '0x2a3Aa9ECA41E720Ed46B5A70D6C37EfA47f768Ac',
 gasLimit:   200000,
 data:       '',
@@ -246,4 +253,10 @@ to:         '0x4F8B6cA78711207E1B281DB63e8d6EAA1ce2F63E',
 gasLimit:   230000,
 data:       '',
 msg:        'HEdpAY (Hdp.ф) sale. Official sale website: https://ibiginvestments.com/hedpay'
+},{
+// COPYTRACK (CPY) Token Sale
+to:         '0xF04436B2eDaa1B777045E1EEFc6DBA8bD2aEbAB8',
+gasLimit:   150000,
+data:       '',
+msg:        'COPYTRACK (CPY) Token Sale. Official sale website: https://copytrack.io'
 }]
