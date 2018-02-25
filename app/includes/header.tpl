@@ -70,7 +70,6 @@
 ]
 }
 </script>
-@@include( '../includes/libVES.tpl')
 </head>
 <body>
 
