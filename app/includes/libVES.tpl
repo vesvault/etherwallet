@@ -1,7 +1,7 @@
 <script type="text/javascript" src="https://ves.host/pub/libVES.js"></script>
 <script type="text/javascript">
-function MEW_libVES() {
-    var app = "MyEtherWallet";
+libVES.instance = function() {
+    var app = "wallet.ves.world";
     var domain = "cryptoWallets";
     libVES.Domain[domain] = {
 	vaultRefToUser: function(vaultRef,VES) {
