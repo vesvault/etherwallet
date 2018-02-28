@@ -47,7 +47,7 @@
               </ul>
             </div>
             <div class="col-xs-12 col-sm-5 onboarding__image">
-              <img src="./images/onboarding_icon-01.svg" width="100%" height="auto" />
+              <img src="./images/onboarding_ves_icon.svg" width="80%" height="auto" />
             </div>
           </section>
           <div class="onboarding__buttons text-center">

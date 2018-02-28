@@ -91,38 +91,6 @@ libVES.instance = function() {
 </script>
 
 </head>
-<style>
-.ves_header {
-    background-color: #66a0fd;
-}
-.ves_header .brand {
-    font-size: 24pt;
-    height: 64px;
-    padding-top:8px;
-}
-.ves_header .ves_brand {
-    display: inline-block;
-    padding-top: 16px;
-    padding-left: 16px;
-}
-.ves_header .brand img {
-    vertical-align: bottom;
-}
-.ves_header_links {
-    display: inline-block;
-    margin-left: 32px;
-    font-size: 10pt;
-}
-.ves_header_links a {
-    display: block;
-}
-.nav-container .nav-scroll .nav-inner .ves_nav a.ves_nav_link {
-    color: #3f3f3f;
-}
-.nav-container .nav-scroll .nav-inner .ves_nav a.ves_nav_link::after {
-    background: #3f3f3f;
-}
-</style>
 <body>
 
 <header class="nav-index-{{gService.currentTab}}" aria-label="header" ng-controller='tabsCtrl' >
@@ -6243,54 +6211,6 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
 
 </section>
 
-<style>
-.footer {
-    background: #303030;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 400;
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-    padding: 1rem;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-.footer a {
-    color: #989898;
-}
-.footer a:hover {
-    color: #efefef;
-}
-.footer__desc {
-    max-width: 33rem;
-}
-.footer small {
-    font-size: 0.8rem;
-}
-.footer .footer__center {
-    text-align: center;
-}
-.footer__center .brand {
-    font-size: 2rem;
-    color: #efefef;
-}
-.footer__center .brand img {
-    vertical-align: bottom;
-}
-
-</style>
-
 <section class="pre-footer" ng-controller='footerCtrl'>
   <div class="container">
     <p>
@@ -6321,9 +6241,7 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
       </a>
     </p>
     <ul class="footer__links">
-      <li><a href="https://chrome.google.com/webstore/detail/etheraddresslookup/pdknmigbbbhmllnmgdfalmedcmcefdfn" target="_blank" rel="noopener noreferrer"> Ether Address Lookup </a></li>
-      <li><a href="https://chrome.google.com/webstore/detail/ethersecuritylookup/bhhfhgpgmifehjdghlbbijjaimhmcgnf" target="_blank" rel="noopener noreferrer"> Ether Security Lookup </a></li>
-      <li><a href="https://etherscamdb.info/" target="_blank" rel="noopener noreferrer"> EtherScamDB </a></li>
+      <li><a href="./faq-wallet.html" target="_blank" rel="noopener noreferrer"> FAQ </a></li>
       <li><a href="https://myetherwallet.github.io/knowledge-base/" target="_blank" rel="noopener noreferrer"> Knowledge Base (MyEtherWallet) </a></li>
       <li><a href="mailto:PR@vesvault.com" target="_blank"> Press Inquiries </a></li>
     </ul>
@@ -6364,17 +6282,6 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
     </ul>
   </div>
 </footer>
-
-
-
-
-
-
-
-
-
-
-
 
 
  <article class="modal fade" id="disclaimerModal" tabindex="-1">
@@ -6462,7 +6369,7 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
               </ul>
             </div>
             <div class="col-xs-12 col-sm-5 onboarding__image">
-              <img src="./images/onboarding_icon-01.svg" width="100%" height="auto" />
+              <img src="./images/onboarding_ves_icon.svg" width="80%" height="auto" />
             </div>
           </section>
           <div class="onboarding__buttons text-center">
