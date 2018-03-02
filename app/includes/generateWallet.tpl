@@ -8,17 +8,21 @@
 
     <section class="block__main gen__1--inner">
       <br />
+	  <h1 class="ves_create_new_msg"><span class="welcome_ves_msg" translate="ONBOARD_ves_welcome_msg">
+              Where your friends can help to recover your lost key.
+      </span></h1>
+	  <br />
       <h1 translate="NAV_GenerateWallet" aria-live="polite">
         Create New Wallet
       </h1>
       <div class="ves_backup_message">
+      <h4 translate="GEN_Label_1">
+        Enter password
+      </h4>
         <span translate="x_VES_Generate1">Choose a strong, hard to guess password for your new wallet.<br/>You can back up your password with</span>
         <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a>
         <span translate="x_VES_Generate2">after this step.</span>
       </div>
-      <h4 translate="GEN_Label_1">
-        Enter password
-      </h4>
       <div class="input-group">
         <input name="password"
              class="form-control"
