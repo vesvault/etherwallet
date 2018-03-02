@@ -218,13 +218,8 @@
 
       <div class="warn">
         <p class="GEN_Warning_1">
-          **Do not lose it!** It cannot be recovered if you lose it.
-        </p>
-        <p class="GEN_Warning_2">
-          **Do not share it!** Your funds will be stolen if you use this file on a malicious/phishing site.
-        </p>
-        <p class="GEN_Warning_3">
-          **Make a backup!** Secure it like the millions of dollars it may one day be worth.
+          Your Keystore file is your private key encrypted by your wallet password. Make multiple copies of your Keystore file and store them in separate locations.
+          They are safe without your wallet password. Do not share your unencrypted private key, and beware of phishing sites.
         </p>
       </div>
 

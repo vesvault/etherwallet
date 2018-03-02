@@ -11,8 +11,6 @@ GEN_Warning_1                   :  'Your Keystore file is your private key encry
 GEN_Warning_2                   :  'Make multiple copies of your Keystore file and store them in separate locations. They are safe without the wallet password.',
 GEN_Warning_3                   :  'Do not share your unencrypted private key. Do not use it on a phishing site as your wallet will be stolen.',
 
-',
-
 GAS_Price_1                     : 'Not So Fast',
 GAS_Price_2                     : 'Fast',
 GAS_Price_3                     : 'Fast AF',
@@ -208,7 +206,7 @@ ONBOARD_final_content__7        :  'How to Send via MetaMask',
 ONBOARD_final_content__8        :  'Learn More or Contact Us',
 ONBOARD_final_content__9        :  'Close',
 ONBOARD_resume                  :  'It looks like you didn\'t finish reading through these slides last time. ProTip: Finish reading through the slides 😉',
-ONBOARD_ves_welcome_msg         :  'Where your friends can help to recover your lost key.',
+ONBOARD_ves_welcome_msg         :  'Where your friends can help you recover your lost key.',
 
 
 /* Old */

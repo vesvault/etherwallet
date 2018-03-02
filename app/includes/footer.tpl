@@ -1,7 +1,9 @@
 <section class="pre-footer" ng-controller='footerCtrl'>
   <div class="container">
     <p>
-      VESwallet does not hold your keys for you. We cannot access accounts, recover keys, reset passwords, nor reverse transactions. Protect your keys &amp; always check that you are on correct URL.
+      VESwallet does not hold your keys for you. We cannot access accounts, recover keys, reset passwords, nor reverse transactions.
+      If you use VESvault to back up an encrypted copy of your wallet password, you are responsible for setting up your VESrecovery network.
+      Protect your keys &amp; always check that you are on correct URL.
       <a role="link" tabindex="0" data-toggle="modal" data-target="#disclaimerModal">
         You are responsible for your security.
       </a>
