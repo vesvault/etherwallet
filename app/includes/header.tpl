@@ -74,63 +74,29 @@
 </head>
 <body>
 
-<header class="{{curNode.name}} {{curNode.service}} {{curNode.service}} nav-index-{{gService.currentTab}}" aria-label="header" ng-controller='tabsCtrl' >
+<header class="nav-index-{{gService.currentTab}}" aria-label="header" ng-controller='tabsCtrl' >
 
-@@if (site === 'mew' ) {
-  <div class="small announcement annoucement-danger">
-    <div class="ves_announcement">
-      This is not the official MyEtherWallet site. This site belongs to VESvault Corp., and offers an alternate version of MEW with VES API integration. To avoid getting Phished, please bookmark this site: <a href="https://wallet.ves.world">wallet.ves.world</a>.
-      <p>To see the original MEW message click <a ng-click="ves_original_hdr=true">here</a></p>
-    </div>
-    <div class="MEW_message_container" ng-show="ves_original_hdr">
-      <div class="ves_divider"><hr></div>
-    <div class="container">
-      DON'T GET PHISHED, please! 🎣 Thank you! 🤗
-      <br />
-      1. BOOKMARK <a href="https://www.myetherwallet.com"> MYETHERWALLET.COM </a>
-      <span class="hidden-xs">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        2. INSTALL <a href="https://chrome.google.com/webstore/detail/etheraddresslookup/pdknmigbbbhmllnmgdfalmedcmcefdfn" target="_blank" rel="noopener noreferrer">EAL</a>
-        or
-        <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank" rel="noopener noreferrer">MetaMask</a>
-        or
-        <a href="https://chrome.google.com/webstore/detail/cryptonite-by-metacert/keghdcpemohlojlglbiegihkljkgnige" target="_blank" rel="noopener noreferrer">Cryptonite</a>
-      </span>
-    </div>
-    </div>
-  </div>
-  <div class="ves_links">
-    <span><a href="/assets/download/VES-Wallet-Marketing.pdf" target="_blank">Download</a> MyEtherWalletWithVES overview</span>
-    <span>See source code at <a href="https://github.com/vesvault" target="_blank">GitHub</a></span>
-  </div>
-}
 
-<section class="bg-gradient header-branding">
+
+
+<section class="ves_header header-branding">
   <section class="container">
-    @@if (site === 'mew' ) {
-      <a class="brand" href="https://www.myetherwallet.com" aria-label="Go to homepage">
-        <img src="images/logo-myetherwallet.svg"   height="64px" width="245px" alt="MyEtherWallet" />
-        <p class="small visible-xs">3.11.3.1</p>
-      </a>
-      <a class="brand" href="https://www.vesvault.com" target="_blank" aria-label="Go to homepage">&nbsp;
+    
+      <a class="brand" href="https://wallet.ves.world" target="_blank" aria-label="Go to homepage">
         <img src="https://www.vesvault.com/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
-        <span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
+        <span>VESwallet</span>
       </a>
-    }
-    @@if (site === 'cx'  ) {
-      <a class="brand" href="/cx-wallet.html" aria-label="Go to homepage">
-        <img src="images/logo-myetherwalletcx.svg" height="64px" width="245px" alt="MyEtherWallet" />
-        <p class="small visible-xs">3.11.3.1</p>
-      </a>
-      <a class="brand" href="https://www.vesvault.com" target="_blank" aria-label="Go to homepage">&nbsp;
-        <img src="https://www.vesvault.com/assets/img/vv-sq-white.png" height="50px" width="48px" alt="VESvault" class="ves_logo6"/>
-        <span style="font-size: 14px;font-weight: 800;position:relative; top: 3px; font-style: italic;">WithVES</span>
-      </a>
-    }
+      <a class="ves_brand" href="https://www.vesvault.com"><i>by</i> VESvault</a>
+
+  <div class="ves_header_links">
+    <span><a href="https://wallet.ves.world/assets/download/VES-Wallet-Overview.pdf" target="_blank">VESwallet Overview</a></span>
+    <span><a href="https://github.com/vesvault" target="_blank">GitHub</a></span>
+  </div>
+    
+    
     <div class="tagline">
 
-    <span class="hidden-xs">3.11.3.1</span>
-    <span class="hidden-xs">-VES</span>
+    <span class="hidden-xs">1.1.0</span>
 
     <span class="dropdown dropdown-lang" ng-cloak>
       <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle  btn btn-white" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
@@ -193,14 +159,14 @@
              rel="noopener noreferrer"></a>
         </div>
       </ul>
-      <p class="dropdown-gas__msg"
+      <!--p class="dropdown-gas__msg"
          ng-show="gasPriceMsg"
          ng-hide="ajaxReq.type!='ETH'">
         The network is really full right now. Check
         <a href="https://ethgasstation.info/"
            target="_blank" rel="noopener noreferrer">Eth Gas Station</a>
         for gas price to use.
-      </p>
+      </p-->
     </span>
 
     <!-- Warning: The separators you see on the frontend are in styles/etherwallet-custom.less. If you add / change a node, you have to adjust these. Ping tayvano if you're not a CSS wizard -->
@@ -239,24 +205,16 @@
   <a aria-hidden="true" ng-show="showLeftArrow" class="nav-arrow-left" ng-click="scrollLeft(100);" ng-mouseover="scrollHoverIn(true,2);" ng-mouseleave="scrollHoverOut()">&#171;</a>
   <div class="nav-scroll">
     <ul class="nav-inner">
-      @@if (site === 'mew' ) {
+      
       <li ng-repeat="tab in tabNames track by $index" \
-          class="nav-item {{tab.name}}" \
+          class="ves_nav nav-item {{tab.name}}" \
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.mew"
           ng-click="tabClick($index)">
-            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+            <a class="ves_nav_link" tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
       </li>
-      }
-      @@if (site === 'cx' ) {
-      <li ng-repeat="tab in tabNames track by $index" \
-          class="nav-item {{tab.name}}" \
-          ng-class="{active: $index==gService.currentTab}"
-          ng-show="tab.cx"
-          ng-click="tabClick($index)">
-            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
-      </li>
-      }
+      
+      
       <li class="nav-item help">
         <a href="https://myetherwallet.github.io/knowledge-base/" target="_blank" rel="noopener noreferrer">
           <span translate="NAV_Help">

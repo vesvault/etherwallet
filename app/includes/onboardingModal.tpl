@@ -13,6 +13,10 @@
               Welcome to MyEtherWallet.com
             </span>
             <br />
+			<span class="welcome_ves_msg" translate="ONBOARD_ves_welcome_msg">
+              Where your friends can help to recover your lost key.
+            </span>
+			<br />
             <small translate="ONBOARD_welcome_content__3">
               We know this click-through shit is annoying. We are sorry.
             </small>
@@ -47,7 +51,7 @@
               </ul>
             </div>
             <div class="col-xs-12 col-sm-5 onboarding__image">
-              <img src="./images/onboarding_icon-01.svg" width="100%" height="auto" />
+              <img src="./images/onboarding_ves_icon.svg" width="80%" height="auto" />
             </div>
           </section>
           <div class="onboarding__buttons text-center">
@@ -323,10 +327,7 @@
                   Install [EAL](https://chrome.google.com/webstore/detail/etheraddresslookup/pdknmigbbbhmllnmgdfalmedcmcefdfn) or [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) or [Cryptonite by Metacert](https://chrome.google.com/webstore/detail/cryptonite-by-metacert/keghdcpemohlojlglbiegihkljkgnige) or the [MyEtherWallet Chrome Extension](https://chrome.google.com/webstore/detail/myetherwallet-cx/nlbmnnijcnlegkjjpcfjclmcfggfefdm) to block malicious websites.
                 </li>
                 <li translate="ONBOARD_secure_1_content__3">
-                  Always check the URL: `https://www.myetherwallet.com`.
-                </li>
-                <li translate="ONBOARD_secure_1_content__4">
-                  Always make sure the URL bar has `MYETHERWALLET LLC` in green.
+                  Always check the URL: `https://wallet.ves.world/ .
                 </li>
                 <li translate="ONBOARD_secure_1_content__5">
                   Do not trust messages or links sent to you randomly via email, Slack, Reddit, Twitter, etc.
@@ -466,58 +467,12 @@
               <img src="./images/onboarding_icon-10.svg" width="100%" height="auto" />
             </div>
             <div class="col-xs-12 col-sm-7">
-              <ul>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/hardware-wallets/hardware-wallet-recommendations.html"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__2">
-                      Get a hardware wallet
-                  </a>
-                </li>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__3">
-                    How to Set up MEW + MetaMask
-                  </a>
-                </li>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/offline/running-myetherwallet-locally.html"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__4">
-                    How to Run MEW Offline / Locally
-                  </a>
-                </li>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-ledger-hardware-wallet.html"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__5">
-                    How to Send via Ledger hardware wallet
-                  </a>
-                </li>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/hardware-wallets/trezor-sending-to-trezor-device.html"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__6">
-                    How to Send via TREZOR hardware wallet
-                  </a>
-                </li>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__7">
-                       How to Send via MetaMask
-                  </a>
-                </li>
-                <li>
-                  <a href="https://myetherwallet.github.io/knowledge-base/"
-                     target="_blank" rel="noopener noreferrer" class="strong" translate="ONBOARD_final_content__8">
-                       Learn More or Contact Us
-                  </a>
-                </li>
-                <li>
                   <a ng-click="onboardModal.close();globalService.currentTab=globalService.tabs.sendTransaction.id"
-                     class="strong">
+                     class="btn btn-primary strong">
                      <span translate="ONBOARD_final_content__9">
-                       OMG, please just let me send FFS.
+                       Close.
                      </span>
                   </a>
-                </li>
-              </ul>
             </div>
           </section>
         </article>
