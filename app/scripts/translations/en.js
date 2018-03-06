@@ -206,7 +206,7 @@ ONBOARD_final_content__7        :  'How to Send via MetaMask',
 ONBOARD_final_content__8        :  'Learn More or Contact Us',
 ONBOARD_final_content__9        :  'Close',
 ONBOARD_resume                  :  'It looks like you didn\'t finish reading through these slides last time. ProTip: Finish reading through the slides 😉',
-ONBOARD_ves_welcome_msg         :  'Where your friends can help you recover your lost key.',
+ONBOARD_ves_welcome_msg         :  'Where your friends can help you recover your lost wallet.',
 
 
 /* Old */
