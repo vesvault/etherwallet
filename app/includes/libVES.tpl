@@ -1,3 +1,4 @@
+<!-- libVES: VESvault end-to-end interface library, https://github.com/vesvault/libVES -->
 <script type="text/javascript" src="https://ves.host/pub/libVES.js"></script>
 <script type="text/javascript">
 libVES.instance = function() {
