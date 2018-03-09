@@ -34,22 +34,15 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
     }
     $scope.$watch('selectedWallet',function() {
         if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all($scope.allWallets.map(function(w,i) {
-            return $scope.VES_getExtId(w.priv).catch(function(){});
+            return globalFuncs.VES_getExtId(w.priv).catch(function(){});
         }));
         $scope.ves_exists = null;
         $scope.ves_status = 'loading';
         if (!$scope.ves_exist) $scope.ves_exist = [];
         (function(sel) {
-            if (!$scope.ves_exist[sel]) $scope.ves_exist[sel] = $scope.ves_extIds.then(function(exiIds) {
-        	var myVES = libVES.instance();
-                myVES.getFileItem({domain:myVES.domain,externalId:extIds[sel]}).then(function(vaultItem) {
-                    return vaultItem.getId().then(function(id) {
-                        return true;
-                    }).catch(function(e) {
-                        if (e.code == 'NotFound') return false;
-                        else throw e;
-                    });
-                });
+            if (!$scope.ves_exist[sel]) $scope.ves_exist[sel] = globalFuncs.VES_exist($scope.ves_extIds,sel);
+            $scope.ves_extIds.then(function(extIds) {
+                $scope.ves_extId = extIds[sel];
             });
             $scope.ves_exist[sel].then(function(exists) {
                 if (sel == $scope.selectedWallet) {
@@ -80,7 +73,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
                 $scope.ves_wallet = Wallet.getWalletFromPrivKeyFile(priv, $scope.password);
             walletService.password = $scope.password;
             try {
-                if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx')[0].checked) throw null;
+                if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx_dec')[0].checked) throw null;
                 $scope.ves_status = 'starting';
                 return libVES.instance().delegate().then(function(myVES) {
                     $scope.ves_status = 'loading';
@@ -88,7 +81,10 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
                     return myVES.putValue({"domain":myVES.domain,"externalId":$scope.ves_extId},$scope.password).then(function(vi) {
                         $scope.ves_status = 'ok';
                         $scope.$apply();
-                        window.setTimeout($scope.ves_backupDone,2000);
+                        window.setTimeout(function() {
+                            $scope.ves_backupDone();
+                            $scope.$apply();
+                        },2000);
                     });
                 }).catch(function(error) {
                     $scope.ves = false;
@@ -97,9 +93,8 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
                     $scope.$apply();
                 });
             } catch(e) {
-                $scope.wallet = $scope.ves_wallet;
+                $scope.ves_backupDone();
             }
-            walletService.wallet = $scope.wallet;
         } catch (e) {
             $scope.notifier.danger(globalFuncs.errorMsgs[6] + ":" + e);
         }
@@ -108,7 +103,6 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
     $scope.ves_backupDone = function() {
         $scope.wallet = $scope.ves_wallet;
         walletService.wallet = $scope.wallet;
-        $scope.$apply();
     };
     $scope.ves_showHidePswd = function () {
         $scope.vespswdVisible = !$scope.vespswdVisible;
@@ -123,7 +117,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
             $scope.$apply();
             myVES.getValue({"domain":myVES.domain,"externalId":$scope.ves_extId}).then(function(value) {
                 $scope.ves_status = 'ok';
-                var fld = document.getElementsByClassName('ves_retrieve')[0];
+                var fld = document.getElementsByClassName('ves_retrieve_dec')[0];
                 fld.value = value;
                 angular.element(fld).triggerHandler('input');
                 $scope.$apply();
