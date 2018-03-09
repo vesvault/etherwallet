@@ -217,7 +217,7 @@
               </label>
               <div class="input-group">
                 <input type="{{showPass && 'password' || 'text'}}"
-                       class="ves_retrieve form-control"
+                       class="ves_retrieve_my form-control"
                        ng-model="password"
                        ng-keyup="$event.keyCode == 13 && decryptWallet()" />
                          <span class="input-group-addon eye" ng-click="showPass=!showPass"></span>
@@ -244,7 +244,7 @@
          <div class="ves_retrieve_info" ng-show="ves_exists==false">
           <div class="ves_divider"><hr></div>
           <span translate="x_VES_retrieve2">The password for this wallet is not yet backed up with VES.</span><br/>
-          <label><input type="checkbox" class="ves_backup_chkbx" /> <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a> <span translate="x_VES_retrieve3">Back it up when unlocking the wallet</span></label>
+          <label><input type="checkbox" class="ves_backup_chkbx_my" /> <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a> <span translate="x_VES_retrieve3">Back it up when unlocking the wallet</span></label>
           <div class="ves_retrieve_msg">
            <span class="ves_loading_msg" ng-show="ves_status=='starting'" translate="x_VES_starting">Connecting to VES...</span>
            <span class="ves_loading_msg" ng-show="ves_status=='loading'" translate="x_VES_backup_loading">Backing up your wallet password with VES...</span>
@@ -260,6 +260,7 @@
            <span class="ves_warn_msg" ng-show="ves_status=='error'" ng-bind="ves_error_msg"></span>
           </div>
          </div>
+        </div>
             </div>
           </form>
         </div>
