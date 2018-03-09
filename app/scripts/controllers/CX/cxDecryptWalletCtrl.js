@@ -32,21 +32,110 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
         }
         throw globalFuncs.errorMsgs[14];
     }
+    $scope.$watch('selectedWallet',function() {
+        if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all($scope.allWallets.map(function(w,i) {
+            return $scope.VES_getExtId(w.priv).catch(function(){});
+        }));
+        $scope.ves_exists = null;
+        $scope.ves_status = 'loading';
+        if (!$scope.ves_exist) $scope.ves_exist = [];
+        (function(sel) {
+            if (!$scope.ves_exist[sel]) $scope.ves_exist[sel] = $scope.ves_extIds.then(function(exiIds) {
+        	var myVES = libVES.instance();
+                myVES.getFileItem({domain:myVES.domain,externalId:extIds[sel]}).then(function(vaultItem) {
+                    return vaultItem.getId().then(function(id) {
+                        return true;
+                    }).catch(function(e) {
+                        if (e.code == 'NotFound') return false;
+                        else throw e;
+                    });
+                });
+            });
+            $scope.ves_exist[sel].then(function(exists) {
+                if (sel == $scope.selectedWallet) {
+                    $scope.ves_exists = exists;
+                    $scope.ves_status = null;
+                    $scope.$apply();
+                }
+            }).catch(function(e) {
+                if (sel == $scope.selectedWallet) {
+                    $scope.ves_status = 'error';
+                    $scope.ves_error_msg = e.message;
+                    $scope.$apply();
+                }
+            });
+        })($scope.selectedWallet);
+    });
     $scope.decryptWallet = function() {
-	    $scope.wallet=null;
-        
-		try {
+        switch ($scope.ves_status) {
+            case 'starting': case 'loading': if ($scope.ves_exists != null) return; break;
+            case 'ok': if ($scope.ves_wallet) return $scope.ves_backupDone();
+        }
+        $scope.wallet = null;
+        try {
             var priv = $scope.getPrivFromAdd();
             if (priv.length==132)
-				$scope.wallet = Wallet.fromMyEtherWalletKey(priv, $scope.password);
+                $scope.ves_wallet = Wallet.fromMyEtherWalletKey(priv, $scope.password);
             else
-                $scope.wallet = Wallet.getWalletFromPrivKeyFile(priv, $scope.password);
+                $scope.ves_wallet = Wallet.getWalletFromPrivKeyFile(priv, $scope.password);
             walletService.password = $scope.password;
+            try {
+                if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx')[0].checked) throw null;
+                $scope.ves_status = 'starting';
+                return libVES.instance().delegate().then(function(myVES) {
+                    $scope.ves_status = 'loading';
+                    $scope.$apply();
+                    return myVES.putValue({"domain":myVES.domain,"externalId":$scope.ves_extId},$scope.password).then(function(vi) {
+                        $scope.ves_status = 'ok';
+                        $scope.$apply();
+                        window.setTimeout($scope.ves_backupDone,2000);
+                    });
+                }).catch(function(error) {
+                    $scope.ves = false;
+                    $scope.ves_error_msg = error.message;
+                    $scope.ves_status = 'error';
+                    $scope.$apply();
+                });
+            } catch(e) {
+                $scope.wallet = $scope.ves_wallet;
+            }
             walletService.wallet = $scope.wallet;
-		} catch (e) {
+        } catch (e) {
             $scope.notifier.danger(globalFuncs.errorMsgs[6] + ":" + e);
-		}
+        }
         if($scope.wallet!=null) $scope.notifier.info(globalFuncs.successMsgs[1]);
-	};
+    };
+    $scope.ves_backupDone = function() {
+        $scope.wallet = $scope.ves_wallet;
+        walletService.wallet = $scope.wallet;
+        $scope.$apply();
+    };
+    $scope.ves_showHidePswd = function () {
+        $scope.vespswdVisible = !$scope.vespswdVisible;
+    };
+    $scope.ves_showHideWarningMsg = function () {
+        $scope.mewwrnVisible = !$scope.mewwrnpswdVisible;
+    };
+    $scope.ves_retrieve = function () {
+        $scope.ves_status = 'starting';
+        libVES.instance().delegate().then(function(myVES) {
+            $scope.ves_status = 'loading';
+            $scope.$apply();
+            myVES.getValue({"domain":myVES.domain,"externalId":$scope.ves_extId}).then(function(value) {
+                $scope.ves_status = 'ok';
+                var fld = document.getElementsByClassName('ves_retrieve')[0];
+                fld.value = value;
+                angular.element(fld).triggerHandler('input');
+                $scope.$apply();
+            }).catch(function(error) {
+                $scope.ves_status = 'error_retrieve';
+                $scope.$apply();
+            })
+        }).catch(function(error) {
+            $scope.ves_status = 'error';
+            $scope.ves_error_msg = error.message;
+            $scope.$apply();
+        })
+    };
 };
 module.exports = cxDecryptWalletCtrl;

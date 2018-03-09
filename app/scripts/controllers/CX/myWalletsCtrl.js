@@ -157,6 +157,33 @@ var myWalletsCtrl = function ($scope, $sce, walletService) {
         $scope.fiatVal.btc = data.btc;
         $scope.setAllWallets();
     });
+    $scope.ves_showHidePswd = function () {
+        $scope.vespswdVisible = !$scope.vespswdVisible;
+    };
+    $scope.ves_showHideWarningMsg = function () {
+        $scope.mewwrnVisible = !$scope.mewwrnpswdVisible;
+    };
+    $scope.ves_retrieve = function () {
+        $scope.ves_status = 'starting';
+        libVES.instance().delegate().then(function(myVES) {
+            $scope.ves_status = 'loading';
+            $scope.$apply();
+            myVES.getValue({"domain":myVES.domain,"externalId":$scope.ves_extId}).then(function(value) {
+                $scope.ves_status = 'ok';
+                var fld = document.getElementsByClassName('ves_retrieve')[0];
+                fld.value = value;
+                angular.element(fld).triggerHandler('input');
+                $scope.$apply();
+            }).catch(function(error) {
+                $scope.ves_status = 'error_retrieve';
+                $scope.$apply();
+            })
+        }).catch(function(error) {
+            $scope.ves_status = 'error';
+            $scope.ves_error_msg = error.message;
+            $scope.$apply();
+        })
+    };
     $scope.setNickNames();
 };
 module.exports = myWalletsCtrl;
