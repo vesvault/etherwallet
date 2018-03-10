@@ -6,6 +6,9 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
 		cxFuncs.getWalletsArr(function(wlts) {
 			$scope.allWallets = wlts;
             $scope.updateBalance();
+            if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all(wlts.map(function(w,i) {
+                return globalFuncs.VES_getExtId(w.priv).catch(function(){});
+            }));
 			$scope.$apply();
 		});
 	};
@@ -33,13 +36,10 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
         throw globalFuncs.errorMsgs[14];
     }
     $scope.$watch('selectedWallet',function() {
-        if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all($scope.allWallets.map(function(w,i) {
-            return globalFuncs.VES_getExtId(w.priv).catch(function(){});
-        }));
         $scope.ves_exists = null;
         $scope.ves_status = 'loading';
         if (!$scope.ves_exist) $scope.ves_exist = [];
-        (function(sel) {
+        if ($scope.ves_extIds) (function(sel) {
             if (!$scope.ves_exist[sel]) $scope.ves_exist[sel] = globalFuncs.VES_exist($scope.ves_extIds,sel);
             $scope.ves_extIds.then(function(extIds) {
                 $scope.ves_extId = extIds[sel];
