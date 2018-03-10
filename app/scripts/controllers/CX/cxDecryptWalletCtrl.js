@@ -28,10 +28,13 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
 	};
 	$scope.setAllWallets();
     $scope.getPrivFromAdd = function(){
+        return $scope.allWallets[this.getIdxFromAdd()].priv;
+    }
+    $scope.getIdxFromAdd = function(){
         if ($scope.selectedWallet=="") throw globalFuncs.errorMsgs[5];
        for (var i = 0; i < $scope.allWallets.length; i++) {
             if( $scope.allWallets[i].addr==$scope.selectedWallet)
-                return $scope.allWallets[i].priv;
+                return i;
         }
         throw globalFuncs.errorMsgs[14];
     }
@@ -57,7 +60,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
                     $scope.$apply();
                 }
             });
-        })($scope.selectedWallet);
+        })($scope.getIdxFromAdd());
     });
     $scope.decryptWallet = function() {
         switch ($scope.ves_status) {

@@ -69,6 +69,7 @@ var addWalletCtrl = function($scope, $sce) {
             $scope.HDWallet.dPath = $scope.HDWallet.defaultDPath;
         }
         $scope.ves_exists = $scope.walletType == "fileupload" ? null : false;
+        $scope.wallet = null;
     });
     $scope.onHDDPathChange = function(password = $scope.mnemonicPassword) {
         $scope.HDWallet.numWallets = 0;
@@ -277,11 +278,10 @@ var addWalletCtrl = function($scope, $sce) {
             $scope.notifier.danger(globalFuncs.errorMsgs[1]);
             return;
         }
-        var wStr = $scope.wallet.toV3($scope.addAccount.password, {
-            kdf: globalFuncs.kdf,
-            n: globalFuncs.scrypt.n
-        });
-        if (!$scope.addAccount.encStr) $scope.addAccount.encStr = JSON.stringify(wStr);
+        if (!$scope.addAccount.encStr) $scope.addAccount.encStr = JSON.stringify($scope.wallet.toV3($scope.addAccount.password, {
+                kdf: globalFuncs.kdf,
+                n: globalFuncs.scrypt.n
+        }));
         try{
             if ($scope.ves_exists || !$scope.ves_backup_chkbx) throw null;
             $scope.ves_status = 'starting';
