@@ -68,6 +68,7 @@ var addWalletCtrl = function($scope, $sce) {
         } else {
             $scope.HDWallet.dPath = $scope.HDWallet.defaultDPath;
         }
+        $scope.ves_exists = $scope.walletType == "fileupload" ? null : false;
     });
     $scope.onHDDPathChange = function(password = $scope.mnemonicPassword) {
         $scope.HDWallet.numWallets = 0;
@@ -163,10 +164,6 @@ var addWalletCtrl = function($scope, $sce) {
         $scope.setBalance();
     }
     $scope.decryptWallet = function() {
-        switch ($scope.ves_status) {
-            case 'starting': case 'loading': if ($scope.ves_exists != null) return; break;
-            case 'ok': if ($scope.ves_wallet) return $scope.ves_backupDone();
-        }
         $scope.wallet = null;
         $scope.addWalletStats = "";
         try {
@@ -177,29 +174,8 @@ var addWalletCtrl = function($scope, $sce) {
                 $scope.wallet = new Wallet($scope.manualprivkey);
                 $scope.addAccount.password = '';
             } else if ($scope.walletType == "fileupload") {
-                $scope.ves_wallet = Wallet.getWalletFromPrivKeyFile($scope.fileContent, $scope.filePassword);
+                $scope.wallet = Wallet.getWalletFromPrivKeyFile($scope.fileContent, $scope.filePassword);
                 $scope.addAccount.password = $scope.filePassword;
-                $scope.notifier.info(globalFuncs.successMsgs[1]);
-                try{
-                    if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx')[0].checked) throw null;
-                    $scope.ves_status = 'starting';
-                    return libVES.instance().delegate().then(function(myVES) {
-                        $scope.ves_status = 'loading';
-                        $scope.$apply();
-                        return myVES.putValue({"domain":myVES.domain,"externalId":$scope.ves_extId},$scope.filePassword).then(function(vi) {
-                            $scope.ves_status = 'ok';
-                            $scope.$apply();
-                            window.setTimeout($scope.ves_backupDone,2000);
-                        });
-                    }).catch(function(error) {
-                        $scope.ves = false;
-                        $scope.ves_error_msg = error.message;
-                        $scope.ves_status = 'error';
-                        $scope.$apply();
-                    });
-                } catch(e) {
-                    $scope.wallet = $scope.ves_wallet;
-                }
             } else if ($scope.walletType == "pastemnemonic") {
                 $scope.mnemonicModel.open();
                 $scope.HDWallet.hdk = hd.HDKey.fromMasterSeed(hd.bip39.mnemonicToSeed($scope.manualmnemonic.trim()));
@@ -209,21 +185,14 @@ var addWalletCtrl = function($scope, $sce) {
         } catch (e) {
             $scope.notifier.danger(globalFuncs.errorMsgs[6] + e);
         }
-        $scope.decryptWalletDone();
-    };
-    $scope.decryptWalletDone = function() {
         if ($scope.wallet != null) {
             $scope.addAccount.address = $scope.wallet.getAddressString();
-            $scope.notifier.info(globalFuncs.successMsgs[1]);
             $scope.showAddWallet = true;
+            $scope.notifier.info(globalFuncs.successMsgs[1]);
             $scope.showPassTxt = $scope.addAccount.password == '';
+            $scope.addAccount.encStr = $scope.addAccount.password == '' ? null : $scope.fileContent;
             $scope.setBalance();
         }
-    };
-    $scope.ves_backupDone = function() {
-        $scope.wallet = $scope.ves_wallet;
-        $scope.decryptWalletDone();
-        $scope.$apply();
     };
     $scope.setNickNames = function() {
         cxFuncs.getAllNickNames(function(nicks) {
@@ -298,8 +267,12 @@ var addWalletCtrl = function($scope, $sce) {
             }
             $scope.$apply();
         });
-    }
+    };
     $scope.importWalletToStorage = function() {
+        switch ($scope.ves_status) {
+            case 'starting': case 'loading': if ($scope.ves_exists != null) return; break;
+            case 'ok': if ($scope.ves_wallet) return $scope.ves_backupDone();
+        }
         if (!globalFuncs.isStrongPass($scope.addAccount.password)) {
             $scope.notifier.danger(globalFuncs.errorMsgs[1]);
             return;
@@ -308,9 +281,36 @@ var addWalletCtrl = function($scope, $sce) {
             kdf: globalFuncs.kdf,
             n: globalFuncs.scrypt.n
         });
-        $scope.addAccount.encStr = JSON.stringify(wStr);
-        $scope.addWalletToStorage();
+        if (!$scope.addAccount.encStr) $scope.addAccount.encStr = JSON.stringify(wStr);
+        try{
+            if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx_add')[0].checked) throw null;
+            $scope.ves_status = 'starting';
+            return libVES.instance().delegate().then(function(myVES) {
+                $scope.ves_status = 'loading';
+                $scope.$apply();
+                return globalFuncs.ves_getExtId($scope.addAccount.encStr).then(function(extId) {
+                    return myVES.putValue({"domain":myVES.domain,"externalId":extId},$scope.addAccount.password).then(function(vi) {
+                        $scope.ves_status = 'ok';
+                        $scope.$apply();
+                        window.setTimeout(function() {
+                            $scope.ves_backupDone();
+                            $scope.$apply();
+                        },2000);
+                    });
+                });
+            }).catch(function(error) {
+                $scope.ves = false;
+                $scope.ves_error_msg = error.message;
+                $scope.ves_status = 'error';
+                $scope.$apply();
+            });
+        } catch(e) {
+            $scope.ves_backupDone();
+        }
     }
+    $scope.ves_backupDone = function() {
+        $scope.addWalletToStorage();
+    };
     $scope.generateWallet = function() {
         var wallet = Wallet.generate(false);
         var wStr = wallet.toV3($scope.addAccount.password, {
@@ -348,7 +348,7 @@ var addWalletCtrl = function($scope, $sce) {
             $scope.$apply();
             myVES.getValue({"domain":myVES.domain,"externalId":$scope.ves_extId}).then(function(value) {
                 $scope.ves_status = 'ok';
-                var fld = document.getElementsByClassName('ves_retrieve')[0];
+                var fld = document.getElementsByClassName('ves_retrieve_file')[0];
                 fld.value = value;
                 angular.element(fld).triggerHandler('input');
                 $scope.$apply();
