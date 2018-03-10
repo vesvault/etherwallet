@@ -288,7 +288,7 @@ var addWalletCtrl = function($scope, $sce) {
             return libVES.instance().delegate().then(function(myVES) {
                 $scope.ves_status = 'loading';
                 $scope.$apply();
-                return globalFuncs.ves_getExtId($scope.addAccount.encStr).then(function(extId) {
+                return globalFuncs.VES_getExtId($scope.addAccount.encStr).then(function(extId) {
                     return myVES.putValue({"domain":myVES.domain,"externalId":extId},$scope.addAccount.password).then(function(vi) {
                         $scope.ves_status = 'ok';
                         $scope.$apply();
@@ -312,14 +312,9 @@ var addWalletCtrl = function($scope, $sce) {
         $scope.addWalletToStorage();
     };
     $scope.generateWallet = function() {
-        var wallet = Wallet.generate(false);
-        var wStr = wallet.toV3($scope.addAccount.password, {
-            kdf: globalFuncs.kdf,
-            n: globalFuncs.scrypt.n
-        });
-        $scope.addAccount.encStr = JSON.stringify(wStr);
-        $scope.addAccount.address = wallet.getAddressString();
-        $scope.addWalletToStorage('addWalletStats');
+        $scope.wallet = Wallet.generate(false);
+        $scope.addAccount.address = $scope.wallet.getAddressString();
+        $scope.importWalletToStorage();
     }
     $scope.setBalance = function() {
         ajaxReq.getBalance($scope.wallet.getAddressString(), function(data) {
