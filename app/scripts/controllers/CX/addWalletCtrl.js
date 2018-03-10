@@ -283,7 +283,7 @@ var addWalletCtrl = function($scope, $sce) {
         });
         if (!$scope.addAccount.encStr) $scope.addAccount.encStr = JSON.stringify(wStr);
         try{
-            if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx_add')[0].checked) throw null;
+            if ($scope.ves_exists || !$scope.ves_backup_chkbx) throw null;
             $scope.ves_status = 'starting';
             return libVES.instance().delegate().then(function(myVES) {
                 $scope.ves_status = 'loading';

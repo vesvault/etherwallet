@@ -6,7 +6,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
 		cxFuncs.getWalletsArr(function(wlts) {
 			$scope.allWallets = wlts;
             $scope.updateBalance();
-            if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all(wlts.map(function(w,i) {
+            $scope.ves_extIds = Promise.all(wlts.map(function(w,i) {
                 return globalFuncs.VES_getExtId(w.priv).catch(function(){});
             }));
 			$scope.$apply();
