@@ -376,7 +376,7 @@ globalFuncs.VES_getExtId = function(str) {
     });
 };
 
-flobalFuncs.VES_exist = function(extIds,idx) {
+globalFuncs.VES_exist = function(extIds,idx) {
     return Promise.resolve(extIds).then(function(extIds) {
         var myVES = libVES.instance();
         myVES.getFileItem({domain:myVES.domain,externalId:extIds[idx]}).then(function(vaultItem) {

@@ -34,7 +34,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
     }
     $scope.$watch('selectedWallet',function() {
         if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all($scope.allWallets.map(function(w,i) {
-            return $scope.VES_getExtId(w.priv).catch(function(){});
+            return globalFuncs.VES_getExtId(w.priv).catch(function(){});
         }));
         $scope.ves_exists = null;
         $scope.ves_status = 'loading';
