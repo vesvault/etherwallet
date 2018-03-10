@@ -17,6 +17,9 @@ var quickSendCtrl = function($scope, $sce) {
 		cxFuncs.getWalletsArr(function(wlts) {
 			$scope.allWallets = wlts;
 			$scope.updateBalance('allWallets');
+                    $scope.ves_extIds = Promise.all(wlts.map(function(w,i) {
+                        return globalFuncs.VES_getExtId(w.priv).catch(function(){});
+                    }));
 		});
 	};
 	$scope.updateBalance = function(varWal) {
@@ -89,13 +92,10 @@ var quickSendCtrl = function($scope, $sce) {
 	}
         $scope.$watch('selectedWallet',function() {
             try {
-                if (!$scope.ves_extIds) $scope.ves_extIds = Promise.all($scope.allWallets.map(function(w,i) {
-                    return globalFuncs.VES_getExtId(w.priv).catch(function(){});
-                }));
                 $scope.ves_exists = null;
                 $scope.ves_status = 'loading';
                 if (!$scope.ves_exist) $scope.ves_exist = [];
-                (function(sel) {
+                if ($scope.ves_extIds) (function(sel) {
                     if (!$scope.ves_exist[sel]) $scope.ves_exist[sel] = globalFuncs.VES_exist($scope.ves_extIds,sel);
                     $scope.ves_extIds.then(function(extIds) {
                         $scope.ves_extId = extIds[sel];
