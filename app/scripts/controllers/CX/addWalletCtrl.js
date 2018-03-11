@@ -69,6 +69,8 @@ var addWalletCtrl = function($scope, $sce) {
             $scope.HDWallet.dPath = $scope.HDWallet.defaultDPath;
         }
         $scope.ves_exists = $scope.walletType == "fileupload" ? null : false;
+        $scope.ves_status = null;
+        $scope.ves_extId = null;
         $scope.wallet = null;
     });
     $scope.onHDDPathChange = function(password = $scope.mnemonicPassword) {
@@ -315,6 +317,10 @@ var addWalletCtrl = function($scope, $sce) {
         $scope.wallet = Wallet.generate(false);
         $scope.addAccount.address = $scope.wallet.getAddressString();
         $scope.importWalletToStorage();
+        window.setTimeout(function() {
+            $scope.walletType = null;
+            $scope.$apply();
+        },1000);
     }
     $scope.setBalance = function() {
         ajaxReq.getBalance($scope.wallet.getAddressString(), function(data) {

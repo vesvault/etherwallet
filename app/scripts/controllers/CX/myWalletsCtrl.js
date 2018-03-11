@@ -150,7 +150,7 @@ var myWalletsCtrl = function ($scope, $sce, walletService) {
             else
                 $scope.ves_wallet = Wallet.getWalletFromPrivKeyFile(priv, $scope.password);
             try {
-                if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx_dec')[0].checked) throw null;
+                if ($scope.ves_exists || !$scope.ves_backup_chkbx) throw null;
                 $scope.ves_status = 'starting';
                 return libVES.instance().delegate().then(function(myVES) {
                     $scope.ves_status = 'loading';
