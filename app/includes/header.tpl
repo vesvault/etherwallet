@@ -23,7 +23,7 @@
 <link href="images/fav/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
 <link href="images/fav/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
 <link href="images/fav/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-<link href="images/fav/manifest.json" rel="manifest">
+<link href="images/fav/mfst.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
 <link href="images/fav/favicon.ico" rel="shortcut icon">
 <meta name="apple-mobile-web-app-title" content="VESwallet: Where your friends can help you recover your lost Ethereum wallet">
@@ -81,6 +81,7 @@
       <a class="ves_brand" href="https://www.vesvault.com"><i>by</i> VESvault</a>
 
   <div class="ves_header_links">
+    <span><a href="https://chrome.google.com/webstore/detail/veswallet/aehoaajegaoakamklmcbgefibhnilbip" target="_blank">VESwallet Chrome Extension</a></span>
     <span><a href="https://wallet.ves.world/assets/download/VES-Wallet-Overview.pdf" target="_blank">VESwallet Overview</a></span>
     <span><a href="https://github.com/vesvault/etherwallet/tree/wallet.ves.world" target="_blank">GitHub</a></span>
   </div>
@@ -197,16 +198,24 @@
   <a aria-hidden="true" ng-show="showLeftArrow" class="nav-arrow-left" ng-click="scrollLeft(100);" ng-mouseover="scrollHoverIn(true,2);" ng-mouseleave="scrollHoverOut()">&#171;</a>
   <div class="nav-scroll">
     <ul class="nav-inner">
-      
+      @@if (site === 'mew' ) {
       <li ng-repeat="tab in tabNames track by $index" \
-          class="ves_nav nav-item {{tab.name}}" \
+          class="nav-item {{tab.name}}" \
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.mew"
           ng-click="tabClick($index)">
-            <a class="ves_nav_link" tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
       </li>
-      
-      
+      }
+      @@if (site === 'cx' ) {
+      <li ng-repeat="tab in tabNames track by $index" \
+          class="nav-item {{tab.name}}" \
+          ng-class="{active: $index==gService.currentTab}"
+          ng-show="tab.cx"
+          ng-click="tabClick($index)">
+            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+      </li>
+      }
       <li class="nav-item help">
         <a href="https://myetherwallet.github.io/knowledge-base/" target="_blank" rel="noopener noreferrer">
           <span translate="NAV_Help">
