@@ -107,6 +107,7 @@ var addWalletCtrl = function($scope, $sce) {
             $scope.showBtnUnlock = !$scope.requireFPass;
             $scope.fileContent = $fileContent;
             try {
+                $scope.ves_exists = null;
                 globalFuncs.VES_getExtId(JSON.stringify(JSON.parse($fileContent))).then(function(extId) {
                     $scope.ves_extId = extId;
                     var myVES = libVES.instance();
