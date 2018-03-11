@@ -89,7 +89,7 @@
     
     <div class="tagline">
 
-    <span class="hidden-xs">1.1.0 beta</span>
+    <span class="hidden-xs">1.2.0 beta</span>
 
     <span class="dropdown dropdown-lang" ng-cloak>
       <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle  btn btn-white" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>

@@ -51,7 +51,7 @@
         Disclaimer
       </a>
       <span style="margin-left: 1em">
-        v1.1.0 beta
+        v1.2.0 beta
       </span>
     </p>
   </div>
