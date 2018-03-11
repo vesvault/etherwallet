@@ -312,15 +312,15 @@ var addWalletCtrl = function($scope, $sce) {
     }
     $scope.ves_backupDone = function() {
         $scope.addWalletToStorage();
+        window.setTimeout(function() {
+            $scope.walletType = null;
+            $scope.$apply();
+        },1000);
     };
     $scope.generateWallet = function() {
         $scope.wallet = Wallet.generate(false);
         $scope.addAccount.address = $scope.wallet.getAddressString();
         $scope.importWalletToStorage();
-        window.setTimeout(function() {
-            $scope.walletType = null;
-            $scope.$apply();
-        },1000);
     }
     $scope.setBalance = function() {
         ajaxReq.getBalance($scope.wallet.getAddressString(), function(data) {
