@@ -28,7 +28,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
 	};
 	$scope.setAllWallets();
     $scope.getPrivFromAdd = function(){
-        return $scope.allWallets[this.getIdxFromAdd()].priv;
+        return $scope.allWallets[$scope.getIdxFromAdd()].priv;
     }
     $scope.getIdxFromAdd = function(){
         if ($scope.selectedWallet=="") throw globalFuncs.errorMsgs[5];
@@ -42,25 +42,25 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
         $scope.ves_exists = null;
         $scope.ves_status = 'loading';
         if (!$scope.ves_exist) $scope.ves_exist = [];
-        if ($scope.ves_extIds) (function(sel) {
+        if ($scope.ves_extIds) (function(sel,addr) {
             if (!$scope.ves_exist[sel]) $scope.ves_exist[sel] = globalFuncs.VES_exist($scope.ves_extIds,sel);
             $scope.ves_extIds.then(function(extIds) {
                 $scope.ves_extId = extIds[sel];
             });
             $scope.ves_exist[sel].then(function(exists) {
-                if (sel == $scope.selectedWallet) {
+                if (addr == $scope.selectedWallet) {
                     $scope.ves_exists = exists;
                     $scope.ves_status = null;
                     $scope.$apply();
                 }
             }).catch(function(e) {
-                if (sel == $scope.selectedWallet) {
+                if (addr == $scope.selectedWallet) {
                     $scope.ves_status = 'error';
                     $scope.ves_error_msg = e.message;
                     $scope.$apply();
                 }
             });
-        })($scope.getIdxFromAdd());
+        })($scope.getIdxFromAdd(),$scope.selectedWallet);
     });
     $scope.decryptWallet = function() {
         switch ($scope.ves_status) {
@@ -76,7 +76,7 @@ var cxDecryptWalletCtrl = function($scope, $sce, walletService) {
                 $scope.ves_wallet = Wallet.getWalletFromPrivKeyFile(priv, $scope.password);
             walletService.password = $scope.password;
             try {
-                if ($scope.ves_exists || !document.getElementsByClassName('ves_backup_chkbx_dec')[0].checked) throw null;
+                if ($scope.ves_exists || !$scope.ves_backup_chkbx) throw null;
                 $scope.ves_status = 'starting';
                 return libVES.instance().delegate().then(function(myVES) {
                     $scope.ves_status = 'loading';

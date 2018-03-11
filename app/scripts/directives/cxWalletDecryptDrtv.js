@@ -35,7 +35,7 @@ var cxWalletDecryptDrtv = function() {
          <div class="ves_retrieve_info" ng-show="ves_exists==false">\n \
           <div class="ves_divider"><hr></div>\n \
           <span translate="x_VES_retrieve2">The password for this wallet is not yet backed up with VES.</span><br/>\n \
-          <label><input type="checkbox" class="ves_backup_chkbx_dec" /> <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a> <span translate="x_VES_retrieve3">Back it up when unlocking the wallet</span></label>\n \
+          <label><input type="checkbox" ng-model="ves_backup_chkbx" /> <a href="https://www.vesvault.com" target="_blank" class="ves_icon_prp" title="VESvault"></a> <span translate="x_VES_retrieve3">Back it up when unlocking the wallet</span></label>\n \
           <div class="ves_retrieve_msg">\n \
            <span class="ves_loading_msg" ng-show="ves_status==\'starting\'" translate="x_VES_starting">Connecting to VES...</span>\n \
            <span class="ves_loading_msg" ng-show="ves_status==\'loading\'" translate="x_VES_backup_loading">Backing up your wallet password with VES...</span>\n \
