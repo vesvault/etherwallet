@@ -204,7 +204,7 @@
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.mew"
           ng-click="tabClick($index)">
-            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+            <a class="ves_nav_link" tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
       </li>
       }
       @@if (site === 'cx' ) {
@@ -213,11 +213,11 @@
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.cx"
           ng-click="tabClick($index)">
-            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+            <a class="ves_nav_link" tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
       </li>
       }
-      <li class="nav-item help">
-        <a href="https://myetherwallet.github.io/knowledge-base/" target="_blank" rel="noopener noreferrer">
+      <li class="ves_nav nav-item help">
+        <a class="ves_nav_link" href="https://myetherwallet.github.io/knowledge-base/" target="_blank" rel="noopener noreferrer">
           <span translate="NAV_Help">
             Help
           </span>
