@@ -5,7 +5,7 @@ var Token = function(contractAddress, userAddress, symbol, decimal, type) {
     this.symbol = symbol;
     this.decimal = decimal;
     this.type = type;
-    this.balance = "Click to Load";
+    this.balance = "loading";
 };
 Token.balanceHex = "0x70a08231";
 Token.transferHex = "0xa9059cbb";

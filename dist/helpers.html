@@ -24,7 +24,7 @@
 <link href="images/fav/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
 <link href="images/fav/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
 <link href="images/fav/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
-<link href="images/fav/manifest.json" rel="manifest">
+<link href="images/fav/mfst.json" rel="manifest">
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
 <link href="images/fav/favicon.ico" rel="shortcut icon">
 <meta name="apple-mobile-web-app-title" content="VESwallet: Where your friends can help you recover your lost Ethereum wallet">
@@ -101,6 +101,7 @@ libVES.instance = function() {
       <a class="ves_brand" href="https://www.vesvault.com"><i>by</i> VESvault</a>
 
   <div class="ves_header_links">
+    <span><a href="https://chrome.google.com/webstore/detail/veswallet/aehoaajegaoakamklmcbgefibhnilbip" target="_blank">VESwallet Chrome Extension</a></span>
     <span><a href="https://wallet.ves.world/assets/download/VES-Wallet-Overview.pdf" target="_blank">VESwallet Overview</a></span>
     <span><a href="https://github.com/vesvault/etherwallet/tree/wallet.ves.world" target="_blank">GitHub</a></span>
   </div>
@@ -223,7 +224,7 @@ libVES.instance = function() {
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.mew"
           ng-click="tabClick($index)">
-            <a class="ves_nav_link" tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
+            <a tabindex="0" aria-label="nav item: {{tab.name | translate}}" translate="{{tab.name}}"></a>
       </li>
       
       
@@ -1582,8 +1583,7 @@ libVES.instance = function() {
 
 
 </main>
-</body>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+ <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58446846-5"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -1591,5 +1591,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'UA-58446846-5');
 </script>
+ 
+</body>
 </html>
 

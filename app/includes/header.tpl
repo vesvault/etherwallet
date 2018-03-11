@@ -200,7 +200,7 @@
     <ul class="nav-inner">
       @@if (site === 'mew' ) {
       <li ng-repeat="tab in tabNames track by $index" \
-          class="nav-item {{tab.name}}" \
+          class="ves_nav nav-item {{tab.name}}" \
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.mew"
           ng-click="tabClick($index)">
@@ -209,7 +209,7 @@
       }
       @@if (site === 'cx' ) {
       <li ng-repeat="tab in tabNames track by $index" \
-          class="nav-item {{tab.name}}" \
+          class="ves_nav nav-item {{tab.name}}" \
           ng-class="{active: $index==gService.currentTab}"
           ng-show="tab.cx"
           ng-click="tabClick($index)">

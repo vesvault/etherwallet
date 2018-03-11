@@ -1,8 +1,9 @@
 {
-  "name": "VESwallet",
-  "version": "1.1.0.2",
+  "name": "VESwallet: Ethereum Wallet with VES Recovery",
+  "short_name": "VESwallet",
+  "version": "1.2.0.0",
   "manifest_version": 2,
-  "description": "VESwallet Chrome Extension",
+  "description": "VESwallet: Where your friends can help you recover your lost Ethereum wallet.",
   "homepage_url": "https://wallet.ves.world/",
   "icons": {
     "16": "images/icons/vv-sq-white-16x16.png",
