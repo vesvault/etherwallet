@@ -363,5 +363,6 @@ var addWalletCtrl = function($scope, $sce) {
             $scope.$apply();
         })
     };
+    $scope.ves_backup_chkbx = true;
 };
 module.exports = addWalletCtrl;
